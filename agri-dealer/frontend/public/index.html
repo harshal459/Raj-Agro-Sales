@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Trusted agricultural machinery dealer for modern farmers. Tractors, harvesters, tillers, sprayers and more. Serving Maharashtra farmers for 15+ years.">
+  <meta property="og:title" content="Krishi Yantra Dealers | Agricultural Machinery">
+  <meta property="og:description"
+    content="Quality farm equipment for the modern farmer. Best prices on tractors, tillers, sprayers, and more.">
+  <meta property="og:type" content="website">
+  <title>Raj Agro sales </title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+
+<body>
+
+  <!-- ─── HEADER ──────────────────────────────────────────────────────────────── -->
+  <header id="mainHeader">
+    <div class="container">
+      <nav class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/images/logo_converted.png" onerror="this.style.display='none'">
+          <div class="logo-text">
+            <span class="logo-name">Raj Agro sales</span>
+          </div>
+        </a>
+
+        <div id="navLinks">
+          <a href="/" class="nav-link active" data-i18n="nav_home">Home</a>
+          <a href="/products.html" class="nav-link" data-i18n="nav_products">Products</a>
+          <a href="/#about" class="nav-link" data-i18n="nav_about">About Us</a>
+          <a href="/contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="mr">मर</button>
+            <button class="lang-btn" data-lang="hi">हि</button>
+          </div>
+          <a href="/inquiry.html" class="btn btn-primary btn-sm" data-i18n="nav_inquiry">Make Inquiry</a>
+          <button id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ────────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"> <img src="\images\hero_img.jpg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <!-- <img src="/images/logo.png" alt="Logo" class="hero-logo" onerror="this.style.display='none'"> -->
+        <span class="hero-eyebrow">🌾 chopda, Maharashtra</span>
+        <h1 data-i18n="hero_tagline">Trusted Agricultural Machinery Dealer</h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">Quality farm equipment for the modern farmer</p>
+        <div class="hero-ctas">
+          <a href="/products.html" class="btn btn-white btn-lg" data-i18n="hero_cta_products">View Products</a>
+          <a href="/inquiry.html" class="btn btn-gold btn-lg" data-i18n="hero_cta_inquiry">Make Inquiry</a>
+          <a href="/contact.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.6);color:#fff"
+            data-i18n="hero_cta_contact">Contact Us</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">Happy Farmers</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">Machine Models</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">5+</div>
+            <div class="hero-stat-label">Top Brands</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 2v8M3 7l3 3 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CATEGORIES ──────────────────────────────────────────────────────────── -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="categories-scroll" id="categoriesBar">
+        <div class="cat-chip active" data-category="All" onclick="filterByCategory(this)">
+          <span class="cat-icon">🌾</span>
+          <span data-i18n="filter_all">All</span>
+        </div>
+        <div class="cat-chip" data-category="Tractors" onclick="filterByCategory(this)">
+          <span class="cat-icon">🚜</span><span>Thresher</span>
+        </div>
+        <div class="cat-chip" data-category="Harvesters" onclick="filterByCategory(this)">
+          <span class="cat-icon">🌾</span><span>Rotavator</span>
+        </div>
+        <div class="cat-chip" data-category="Tillers" onclick="filterByCategory(this)">
+          <span class="cat-icon">⚙️</span><span>Tillers</span>
+        </div>
+        <div class="cat-chip" data-category="Sprayers" onclick="filterByCategory(this)">
+          <span class="cat-icon">💧</span><span>greader</span>
+        </div>
+        <div class="cat-chip" data-category="Seeders" onclick="filterByCategory(this)">
+          <span class="cat-icon">🌱</span><span>Seeders</span>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURED PRODUCTS ──────────────────────────────────────────────────── -->
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Best Sellers</span>
+        <h2 data-i18n="section_featured">Featured Products</h2>
+        <p>Trusted by thousands of farmers across Maharashtra</p>
+      </div>
+      <div class="product-grid" id="featuredGrid">
+        <div class="loading-state">
+          <div class="spinner"></div><span data-i18n="loading">Loading...</span>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <a href="/products.html" class="btn btn-primary btn-lg" data-i18n="section_all_products">View All Products →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST STATS ────────────────────────────────────────────────────────── -->
+  <section class="section trust-section" id="about">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:3rem">
+        <span class="section-eyebrow" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9)">Why Choose
+          Us</span>
+        <h2 style="color:#fff" data-i18n="about_title">About Us</h2>
+        <p style="color:rgba(255,255,255,0.75)" data-i18n="about_text">We are a trusted dealer of agricultural machinery
+          serving farmers for over 10 years.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">🏆</div>
+          <div class="trust-number">10+</div>
+          <div class="trust-label">Years in Business</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">👨‍🌾</div>
+          <div class="trust-number">500+</div>
+          <div class="trust-label">Satisfied Farmers</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🔧</div>
+          <div class="trust-number">24/7</div>
+          <div class="trust-label">After-Sales Service</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✅</div>
+          <div class="trust-number">100%</div>
+          <div class="trust-label">Genuine Products</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INQUIRY SECTION ────────────────────────────────────────────────────── -->
+  <section class="section inquiry-section" id="inquiry">
+    <div class="container">
+      <div class="inquiry-wrap">
+        <div class="inquiry-info">
+          <span class="section-eyebrow">Quick Contact</span>
+          <h2 data-i18n="inquiry_title">Send Inquiry</h2>
+          <p data-i18n="inquiry_subtitle">Fill the form and we will contact you shortly.</p>
+          <div class="inquiry-feature">
+            <div class="inquiry-icon">📞</div>
+            <div>
+              <h4>Fast Response</h4>
+              <p>We respond within 2 hours on business days</p>
+            </div>
+          </div>
+          <div class="inquiry-feature">
+            <div class="inquiry-icon">💰</div>
+            <div>
+              <h4>Best Prices</h4>
+              <p>machine avaible on supsidy</p>
+            </div>
+          </div>
+          <div class="inquiry-feature">
+            <div class="inquiry-icon">🔧</div>
+            <div>
+              <h4>Free Demo</h4>
+              <p>Free product demonstration</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-card">
+          <form id="inquiryForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="inqName" data-i18n="label_name">Full Name</label>
+                <input type="text" id="inqName" data-i18n-placeholder="placeholder_name" placeholder="Your full name"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="inqPhone" data-i18n="label_phone">Mobile Number</label>
+                <input type="tel" id="inqPhone" data-i18n-placeholder="placeholder_phone"
+                  placeholder="10-digit mobile number" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="inqVillage" data-i18n="label_village">Village / City</label>
+                <input type="text" id="inqVillage" data-i18n-placeholder="placeholder_village"
+                  placeholder="Your village or city">
+              </div>
+              <div class="form-group">
+                <label for="inqMachine" data-i18n="label_machine">Machine Interested In</label>
+                <input type="text" id="inqMachine" data-i18n-placeholder="placeholder_machine"
+                  placeholder="Which machine?">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inqMessage" data-i18n="label_message">Message</label>
+              <textarea id="inqMessage" rows="3" data-i18n-placeholder="placeholder_message"
+                placeholder="Any specific requirement..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="inqSubmitBtn">
+              <span data-i18n="btn_submit">Submit Inquiry</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ────────────────────────────────────────────────────────── -->
+  <section class="section" style="background:var(--bg-cream)">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Customer Reviews</span>
+        <h2>What Farmers Say</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">customer feedback</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">👨‍🌾</div>
+            <div>
+              <div class="testimonial-name">customer name</div>
+              <div class="testimonial-loc"> Adress</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">customer feedback</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">👨‍🌾</div>
+            <div>
+              <div class="testimonial-name">customer name</div>
+              <div class="testimonial-loc">Adress</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">customer feedback</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">👨‍🌾</div>
+            <div>
+              <div class="testimonial-name">customer name</div>
+              <div class="testimonial-loc">Adress</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name"><img src="\images\logo_name_converted.png" style="height: 60px; width: 90px;">
+          </div>
+          <p class="footer-tagline" data-i18n="footer_tagline">Serving Farmers with Quality & Trust</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" title="WhatsApp" onclick="openWhatsApp()">WhatsApp</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="/" data-i18n="nav_home">Home</a>
+            <a href="/products.html" data-i18n="nav_products">Products</a>
+            <a href="/#about" data-i18n="nav_about">About Us</a>
+            <a href="/contact.html" data-i18n="nav_contact">Contact</a>
+            <a href="/inquiry.html" data-i18n="nav_inquiry">Make Inquiry</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <div class="footer-links">
+            <a href="/products.html?category=Tractors">Thresher</a>
+            <a href="/products.html?category=Harvesters">Rotavator</a>
+            <a href="/products.html?category=Tillers">Tillers</a>
+            <a href="/products.html?category=Sprayers">greader</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="nav_contact">Contact</h4>
+          <div class="footer-links">
+            <a href="tel:+919763638666">📞 +91 9763638666</a>
+            <a href="mailto:rajagrosales4448@gmail.com">✉️ rajagrosales4448@gmail.com</a>
+            <a href="#">📍 infront of MSEB OFFICE shirpur road, chopda</a>
+            <a href="#">🕘 Mon–Sun: 9:30 AM – 5 PM</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 <img src="\images\logo_converted.png" style="height: 60px; border-radius: 50%;"> <span data-i18n="footer_rights">All Rights Reserved</span>.</p>
+        <p>Made with ❤️ for Maharashtra Farmers</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── WELCOME MODAL ────────────────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="welcomeModal">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal">✕</button>
+      <div class="modal-icon">🙏</div>
+      <h3 data-i18n="welcome_title">Welcome! Let us Know You</h3>
+      <p data-i18n="welcome_subtitle">Please share your details to get personalized service.</p>
+      <form id="welcomeForm">
+        <div class="form-group">
+          <label data-i18n="label_name">Full Name</label>
+          <input type="text" id="welcomeName" data-i18n-placeholder="placeholder_name" placeholder="Your full name"
+            required>
+        </div>
+        <div class="form-group">
+          <label data-i18n="label_phone">Mobile Number</label>
+          <input type="tel" id="welcomePhone" data-i18n-placeholder="placeholder_phone"
+            placeholder="10-digit mobile number" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          <span data-i18n="btn_continue">Continue</span>
+        </button>
+      </form>
+      <span class="modal-skip" id="skipModal" data-i18n="skip_for_now">Skip for now</span>
+    </div>
+  </div>
+
+  <!-- ─── WHATSAPP FLOAT ─────────────────────────────────────────────────────── -->
+  <button id="whatsappFloat" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </button>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    // Load featured products
+    async function loadFeaturedProducts() {
+      const grid = document.getElementById('featuredGrid');
+      const res = await API.get('/products/featured');
+      if (!res.success || !res.products.length) {
+        grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🌾</div><p data-i18n="no_products">No products found</p></div>';
+        return;
+      }
+      grid.innerHTML = res.products.map(p => createProductCard(p)).join('');
+    }
+
+    function createProductCard(p) {
+      const avail = p.availability === 'In Stock' ? 'dot-green' : p.availability === 'Out of Stock' ? 'dot-red' : 'dot-orange';
+      const availKey = p.availability === 'In Stock' ? 'in_stock' : p.availability === 'Out of Stock' ? 'out_of_stock' : 'on_order';
+      return `
+  <div class="product-card">
+    <div class="product-img-wrap">
+      <img src="${p.mainImage || '/images/placeholder.jpg'}" alt="${p.name}" loading="lazy"
+        onerror="this.src='/images/placeholder.jpg'">
+      ${p.isFeatured ? '<span class="product-badge featured">⭐ Featured</span>' : ''}
+      <div class="availability-dot">
+        <div class="dot ${avail}"></div>
+        <span>${I18n.t(availKey)}</span>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="product-cat">${p.category}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-meta">
+        <div class="product-price">${p.priceDisplay || '₹' + p.price.toLocaleString('en-IN')}</div>
+        <div class="product-brand">${p.brand}</div>
+      </div>
+      <div class="product-actions">
+        <a href="/product.html?slug=${p.slug}" class="btn btn-outline btn-sm" data-i18n="btn_view_details">View Details</a>
+        <a href="/inquiry.html?product=${encodeURIComponent(p.name)}" class="btn btn-primary btn-sm" data-i18n="btn_send_inquiry">Inquiry</a>
+      </div>
+    </div>
+  </div>`;
+    }
+
+    function filterByCategory(el) {
+      document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      const cat = el.dataset.category;
+      window.location.href = `/products.html${cat !== 'All' ? '?category=' + cat : ''}`;
+    }
+
+    // Inquiry form
+    document.getElementById('inquiryForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('inqSubmitBtn');
+      const name = document.getElementById('inqName').value.trim();
+      const phone = document.getElementById('inqPhone').value.trim();
+      if (!name || !/^[6-9]\d{9}$/.test(phone)) {
+        showToast(I18n.t('error_phone'), 'error'); return;
+      }
+      btn.disabled = true;
+      btn.innerHTML = '<div class="spinner"></div>';
+      const res = await API.post('/inquiries', {
+        customerName: name,
+        phone,
+        village: document.getElementById('inqVillage').value.trim(),
+        productInterested: document.getElementById('inqMachine').value.trim(),
+        message: document.getElementById('inqMessage').value.trim(),
+        sessionId: SessionManager.getSessionId()
+      });
+      btn.disabled = false;
+      btn.innerHTML = '<span data-i18n="btn_submit">Submit Inquiry</span>';
+      if (res.success) {
+        showToast(I18n.t('inquiry_success'));
+        e.target.reset();
+      } else {
+        showToast('Failed to submit. Please try again.', 'error');
+      }
+    });
+
+    loadFeaturedProducts();
+  </script>
+</body>
+
+</html>

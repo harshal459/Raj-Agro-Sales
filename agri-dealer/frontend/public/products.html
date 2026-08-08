@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our complete range of agricultural machinery - Tractors, Harvesters, Tillers, Sprayers and more.">
+  <title>Products | Raj Agro sales</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="mainHeader">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_converted.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="logo-name">Raj Agro sales</span>
+        </div>
+      </a>
+      <div id="navLinks">
+        <a href="/" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="/products.html" class="nav-link active" data-i18n="nav_products">Products</a>
+        <a href="/#about" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="/contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="mr">मर</button>
+          <button class="lang-btn" data-lang="hi">हि</button>
+        </div>
+        <a href="/inquiry.html" class="btn btn-primary btn-sm" data-i18n="nav_inquiry">Make Inquiry</a>
+        <button id="navToggle"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <br>
+    </div>
+    <h1 data-i18n="section_all_products">All Products</h1>
+    <p style="color:rgba(255,255,255,0.8);margin-top:0.5rem">Quality agricultural machinery for Maharashtra farmers</p>
+  </div>
+</div>
+
+<section class="section-sm">
+  <div class="container">
+    <!-- Filters -->
+    <div class="product-filters">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Search products...">
+      </div>
+      <select class="filter-select" id="categoryFilter">
+        <option value="All" data-i18n="filter_all">All Categories</option>
+        <option value="Harvesters">Thresher</option>
+        <option value="Tillers">Tillers</option>
+        <option value="Sprayers">Rotavator</option>
+        <option value="Seeders">Seeders</option>
+      </select>
+      <select class="filter-select" id="availFilter">
+        <option value="All">All Availability</option>
+        <option value="In Stock" data-i18n="in_stock">In Stock</option>
+        <option value="On Order" data-i18n="on_order">On Order</option>
+      </select>
+    </div>
+
+    <!-- Results info -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.5rem">
+      <p id="resultsInfo" style="color:var(--text-light);font-size:0.88rem"></p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="product-grid" id="productsGrid">
+      <div class="loading-state"><div class="spinner"></div><span>Loading products...</span></div>
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination" style="display:flex;justify-content:center;gap:0.5rem;margin-top:2.5rem;flex-wrap:wrap"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:0">
+      <p>© 2026 <img src="\images\logo_converted.png" style="height: 60px; border-radius: 50%;">. All Rights Reserved.</p>
+      <a href="/" class="btn btn-outline btn-sm" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2)">← Back to Home</a>
+    </div>
+  </div>
+</footer>
+
+<button id="whatsappFloat" aria-label="Chat on WhatsApp" onclick="openWhatsApp()">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeModal">✕</button>
+    <div class="modal-icon">🙏</div>
+    <h3 data-i18n="welcome_title">Welcome!</h3>
+    <p data-i18n="welcome_subtitle">Share your details for personalized service.</p>
+    <form id="welcomeForm">
+      <div class="form-group">
+        <label data-i18n="label_name">Full Name</label>
+        <input type="text" id="welcomeName" placeholder="Your full name" required>
+      </div>
+      <div class="form-group">
+        <label data-i18n="label_phone">Mobile Number</label>
+        <input type="tel" id="welcomePhone" placeholder="10-digit mobile number" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-i18n="btn_continue">Continue</button>
+    </form>
+    <span class="modal-skip" id="skipModal" data-i18n="skip_for_now">Skip for now</span>
+  </div>
+</div>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+let currentPage = 1;
+const LIMIT = 12;
+
+function getFilters() {
+  return {
+    search: document.getElementById('searchInput').value.trim(),
+    category: document.getElementById('categoryFilter').value,
+    availability: document.getElementById('availFilter').value,
+    page: currentPage
+  };
+}
+
+async function loadProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '<div class="loading-state"><div class="spinner"></div><span>Loading...</span></div>';
+
+  const { search, category, availability, page } = getFilters();
+  let query = `?page=${page}&limit=${LIMIT}`;
+  if (search) query += `&search=${encodeURIComponent(search)}`;
+  if (category !== 'All') query += `&category=${encodeURIComponent(category)}`;
+  if (availability !== 'All') query += `&availability=${encodeURIComponent(availability)}`;
+
+  const res = await API.get(`/products${query}`);
+  if (!res.success) { grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">❌</div><p>Failed to load products</p></div>'; return; }
+
+  document.getElementById('resultsInfo').textContent = `Showing ${res.products.length} of ${res.total} products`;
+
+  if (!res.products.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-state-icon">🌾</div><p>${I18n.t('no_products')}</p></div>`;
+  } else {
+    grid.innerHTML = res.products.map(p => `
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="${p.mainImage || '/images/placeholder.jpg'}" alt="${p.name}" loading="lazy" onerror="this.src='/images/placeholder.jpg'">
+          <div class="availability-dot">
+            <div class="dot ${p.availability === 'In Stock' ? 'dot-green' : p.availability === 'Out of Stock' ? 'dot-red' : 'dot-orange'}"></div>
+            <span>${p.availability}</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">${p.category}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-meta">
+            <div class="product-price">${p.priceDisplay || '₹'+p.price.toLocaleString('en-IN')}</div>
+            <div class="product-brand">${p.brand}</div>
+          </div>
+          <div class="product-actions">
+            <a href="/product.html?slug=${p.slug}" class="btn btn-outline btn-sm">${I18n.t('btn_view_details')}</a>
+            <a href="/inquiry.html?product=${encodeURIComponent(p.name)}" class="btn btn-primary btn-sm">${I18n.t('btn_send_inquiry')}</a>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  // Pagination
+  const pages = res.pages || 1;
+  const paginationEl = document.getElementById('pagination');
+  if (pages > 1) {
+    let html = '';
+    for (let i = 1; i <= pages; i++) {
+      html += `<button onclick="goToPage(${i})" class="btn ${i === currentPage ? 'btn-primary' : 'btn-outline'} btn-sm">${i}</button>`;
+    }
+    paginationEl.innerHTML = html;
+  } else {
+    paginationEl.innerHTML = '';
+  }
+}
+
+function goToPage(p) { currentPage = p; loadProducts(); window.scrollTo({top:0, behavior:'smooth'}); }
+
+// Read URL params
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('category')) document.getElementById('categoryFilter').value = urlParams.get('category');
+
+// Debounce search
+let searchTimer;
+document.getElementById('searchInput').addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => { currentPage = 1; loadProducts(); }, 400);
+});
+document.getElementById('categoryFilter').addEventListener('change', () => { currentPage = 1; loadProducts(); });
+document.getElementById('availFilter').addEventListener('change', () => { currentPage = 1; loadProducts(); });
+
+loadProducts();
+</script>
+</body>
+</html>

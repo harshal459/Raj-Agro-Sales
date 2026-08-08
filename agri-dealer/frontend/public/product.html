@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail | Raj Agro sales</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .tab-bar { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:1.5rem; overflow-x:auto; }
+    .tab-btn { padding:0.75rem 1.25rem; font-size:0.9rem; font-weight:600; color:var(--text-light); border-bottom:2px solid transparent; margin-bottom:-2px; cursor:pointer; white-space:nowrap; background:none; transition:all 0.2s; }
+    .tab-btn.active { color:var(--green-mid); border-bottom-color:var(--green-mid); }
+    .tab-panel { display:none; } .tab-panel.active { display:block; }
+    .detail-price-box { background:var(--green-pale); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 1.5rem; margin:1.25rem 0; }
+    .detail-price { font-size:2rem; font-weight:800; color:var(--green-dark); font-family:var(--font-head); }
+    .detail-actions { display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.25rem; }
+    .detail-actions .btn { flex:1; min-width:160px; justify-content:center; }
+    .back-btn { display:inline-flex; align-items:center; gap:0.4rem; color:rgba(255,255,255,0.8); font-size:0.88rem; margin-bottom:1rem; transition:color 0.2s; }
+    .back-btn:hover { color:#fff; }
+    .related-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; }
+  </style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_converted.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="logo-name">Raj Agro sales</span>
+        </div>
+      </a>
+      <div id="navLinks">
+        <a href="/" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="/products.html" class="nav-link active" data-i18n="nav_products">Products</a>
+        <a href="/#about" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="/contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="mr">मर</button>
+          <button class="lang-btn" data-lang="hi">हि</button>
+        </div>
+        <a href="/inquiry.html" class="btn btn-primary btn-sm" data-i18n="nav_inquiry">Make Inquiry</a>
+        <button id="navToggle"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Page Header -->
+<div class="page-header" id="pageHeader">
+  <div class="container">
+    <br>
+    <div class="breadcrumb">
+      <a href="/" data-i18n="nav_home">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="/products.html" data-i18n="nav_products">Products</a>
+      <span class="breadcrumb-sep">›</span>
+      <span id="breadcrumbName">Loading...</span>
+    </div>
+    <h1 id="pageTitle">Loading...</h1>
+  </div>
+</div>
+
+<!-- Product Detail -->
+<section class="section-sm">
+  <div class="container">
+    <div id="productContent">
+      <div class="loading-state"><div class="spinner"></div><span data-i18n="loading">Loading...</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+<section class="section" style="background:var(--bg-cream)" id="relatedSection" style="display:none">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">You May Also Like</span>
+      <h2 data-i18n="related_products">Related Products</h2>
+    </div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:0">
+      <p>© 2026 <img src="\images\logo_converted.png" style="height: 60px; border-radius: 50%;">. All Rights Reserved.</p>
+      <a href="/products.html" class="btn btn-outline btn-sm" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2)">← All Products</a>
+    </div>
+  </div>
+</footer>
+
+<button id="whatsappFloat" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeModal">✕</button>
+    <div class="modal-icon">🙏</div>
+    <h3 data-i18n="welcome_title">Welcome!</h3>
+    <p data-i18n="welcome_subtitle">Share your details for personalized service.</p>
+    <form id="welcomeForm">
+      <div class="form-group">
+        <label data-i18n="label_name">Full Name</label>
+        <input type="text" id="welcomeName" placeholder="Your full name" required>
+      </div>
+      <div class="form-group">
+        <label data-i18n="label_phone">Mobile Number</label>
+        <input type="tel" id="welcomePhone" placeholder="10-digit mobile number" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-i18n="btn_continue">Continue</button>
+    </form>
+    <span class="modal-skip" id="skipModal" data-i18n="skip_for_now">Skip for now</span>
+  </div>
+</div>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+let currentProduct = null;
+
+async function loadProduct() {
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  if (!slug) { window.location.href = '/products.html'; return; }
+
+  const res = await API.get(`/products/${slug}`);
+  if (!res.success) {
+    document.getElementById('productContent').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">❌</div>
+        <p>Product not found.</p>
+        <a href="/products.html" class="btn btn-primary" style="margin-top:1rem">← Back to Products</a>
+      </div>`;
+    return;
+  }
+
+  currentProduct = res.product;
+  const p = currentProduct;
+
+  document.title = `${p.name} | Krishi Yantra Dealers`;
+  document.getElementById('breadcrumbName').textContent = p.name;
+  document.getElementById('pageTitle').textContent = p.name;
+
+  const availClass = p.availability === 'In Stock' ? 'badge-green' : p.availability === 'Out of Stock' ? 'badge-red' : 'badge-gold';
+
+  const imagesHtml = (p.images && p.images.length > 0 ? p.images : [p.mainImage || '/images/placeholder.jpg']);
+  const thumbsHtml = imagesHtml.map((img, i) => `
+    <div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="changeMainImage(this, '${img}')">
+      <img src="${img}" alt="Image ${i+1}" onerror="this.src='/images/placeholder.jpg'">
+    </div>`).join('');
+
+  const specsHtml = p.specifications && p.specifications.length
+    ? `<table class="spec-table">${p.specifications.map(s => `<tr><td>${s.key}</td><td>${s.value}</td></tr>`).join('')}</table>`
+    : '<p style="color:var(--text-light)">No specifications available.</p>';
+
+  const featuresHtml = p.features && p.features.length
+    ? `<div class="feature-list">${p.features.map(f => `<div class="feature-item"><span class="feature-check">✅</span>${f}</div>`).join('')}</div>`
+    : '';
+
+  const benefitsHtml = p.benefits && p.benefits.length
+    ? `<div class="feature-list">${p.benefits.map(b => `<div class="feature-item"><span class="feature-check">🌟</span>${b}</div>`).join('')}</div>`
+    : '';
+
+  document.getElementById('productContent').innerHTML = `
+    <div class="product-detail-grid">
+      <!-- Gallery -->
+      <div>
+        <div class="product-gallery-main" id="mainGallery">
+          <img src="${imagesHtml[0]}" alt="${p.name}" id="mainImg" onerror="this.src='/images/placeholder.jpg'">
+        </div>
+        ${imagesHtml.length > 1 ? `<div class="product-gallery-thumbs">${thumbsHtml}</div>` : ''}
+      </div>
+
+      <!-- Info -->
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem">
+          <span class="badge badge-green" style="font-size:0.8rem">${p.category}</span>
+          <span class="badge ${availClass}">${p.availability}</span>
+          <span style="font-size:0.82rem;color:var(--text-light)">Brand: <strong>${p.brand}</strong></span>
+        </div>
+        <h2 style="font-size:1.6rem;margin-bottom:0.75rem">${p.name}</h2>
+        <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.7;margin-bottom:1rem">${p.description}</p>
+
+        ${featuresHtml ? `
+        <div style="margin-bottom:1rem">
+          <h4 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green-dark);margin-bottom:0.5rem" data-i18n="product_features">Key Features</h4>
+          ${featuresHtml}
+        </div>` : ''}
+
+        <div class="detail-price-box">
+          <div style="font-size:0.78rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.25rem">Price</div>
+          <div class="detail-price">${p.priceDisplay || '₹' + p.price.toLocaleString('en-IN')}</div>
+          <div style="font-size:0.8rem;color:var(--text-light);margin-top:0.35rem">*Price may vary. Contact for best offer & EMI options.</div>
+        </div>
+
+        <div class="detail-actions">
+          <a href="/inquiry.html?product=${encodeURIComponent(p.name)}&id=${p._id}" class="btn btn-primary btn-lg" data-i18n="btn_send_inquiry">
+            📩 Send Inquiry
+          </a>
+          <button class="btn btn-whatsapp btn-lg" onclick="openWhatsApp('Hello, I am interested in ${encodeURIComponent(p.name)}. Please share price and details.')" data-i18n="whatsapp_inquiry">
+            💬 WhatsApp
+          </button>
+        </div>
+
+        <div style="display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.83rem;color:var(--text-light)">✅ Genuine Product</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.83rem;color:var(--text-light)">🚛 Delivery Available</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.83rem;color:var(--text-light)">🔧 Service Support</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="margin-top:3rem">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(this,'tabSpecs')" data-i18n="product_specs">Specifications</button>
+        ${benefitsHtml ? `<button class="tab-btn" onclick="switchTab(this,'tabBenefits')" data-i18n="product_benefits">Benefits</button>` : ''}
+      </div>
+      <div id="tabSpecs" class="tab-panel active">${specsHtml}</div>
+      ${benefitsHtml ? `<div id="tabBenefits" class="tab-panel">${benefitsHtml}</div>` : ''}
+    </div>`;
+
+  I18n.apply();
+
+  // Load related
+  loadRelated(p.category, p._id);
+}
+
+function changeMainImage(thumb, src) {
+  document.getElementById('mainImg').src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+async function loadRelated(category, currentId) {
+  const res = await API.get(`/products?category=${category}&limit=4`);
+  if (!res.success) return;
+  const related = res.products.filter(p => p._id !== currentId);
+  if (!related.length) return;
+
+  document.getElementById('relatedSection').style.display = 'block';
+  document.getElementById('relatedGrid').innerHTML = related.slice(0,4).map(p => `
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="${p.mainImage || '/images/placeholder.jpg'}" alt="${p.name}" loading="lazy" onerror="this.src='/images/placeholder.jpg'">
+      </div>
+      <div class="product-info">
+        <div class="product-cat">${p.category}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-meta">
+          <div class="product-price">${p.priceDisplay || '₹'+p.price.toLocaleString('en-IN')}</div>
+          <div class="product-brand">${p.brand}</div>
+        </div>
+        <div class="product-actions">
+          <a href="/product.html?slug=${p.slug}" class="btn btn-outline btn-sm">View Details</a>
+          <a href="/inquiry.html?product=${encodeURIComponent(p.name)}" class="btn btn-primary btn-sm">Inquiry</a>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+loadProduct();
+</script>
+</body>
+</html>

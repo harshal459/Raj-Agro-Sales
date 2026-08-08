@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Inquiry | Raj Agro sales</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="mainHeader">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_converted.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="logo-name">Raj Agro sales</span>
+        </div>
+      </a>
+      <div id="navLinks">
+        <a href="/" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="/products.html" class="nav-link" data-i18n="nav_products">Products</a>
+        <a href="/#about" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="/contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="mr">मर</button>
+          <button class="lang-btn" data-lang="hi">हि</button>
+        </div>
+        <button id="navToggle"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <span class="breadcrumb-sep"></span>
+    </div>
+    <h1 data-i18n="inquiry_title">Send Inquiry</h1>
+    <p style="color:rgba(255,255,255,0.8);margin-top:0.5rem" data-i18n="inquiry_subtitle">Fill the form and we will contact you shortly</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="inquiry-wrap">
+      <!-- Left info panel -->
+      <div class="inquiry-info">
+        <span class="section-eyebrow">Quick & Easy</span>
+        <h2 data-i18n="inquiry_title">Send Inquiry</h2>
+        <p style="margin-bottom:1.5rem;color:var(--text-light)">We respond to all inquiries within 2 hours during business hours. Our team will call you with the best price.</p>
+
+        <div class="inquiry-feature">
+          <div class="inquiry-icon">📞</div>
+          <div>
+            <h4>Direct Phone</h4>
+            <p><a href="tel:+919763638666" style="color:var(--green-mid);font-weight:600">+91 97636 38666</a></p>
+          </div>
+        </div>
+        <div class="inquiry-feature">
+          <div class="inquiry-icon">💬</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <p><button onclick="openWhatsApp()" class="btn btn-whatsapp btn-sm" style="margin-top:0.35rem">Chat on WhatsApp</button></p>
+          </div>
+        </div>
+        <div class="inquiry-feature">
+          <div class="inquiry-icon">🕘</div>
+          <div>
+            <h4 data-i18n="contact_hours">Business Hours</h4>
+            <p data-i18n="contact_hours_val">Mon–Sun: 9:30 AM – 5 PM</p>
+          </div>
+        </div>
+        <div class="inquiry-feature">
+          <div class="inquiry-icon">🏠</div>
+          <div>
+            <h4 data-i18n="contact_address">Address</h4>
+            <p>infornt of MSEB OFFICE shirpur road , chopda</p>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;background:var(--green-pale);border-radius:var(--radius);padding:1.25rem">
+          <h4 style="color:var(--green-dark);margin-bottom:0.75rem">We Offer:</h4>
+          <div class="feature-list">
+            <div class="feature-item"><span class="feature-check">✅</span>Free demonstration</div>
+            <div class="feature-item"><span class="feature-check">✅</span>supsidy option</div>
+            <div class="feature-item"><span class="feature-check">✅</span>Best price guarantee</div>
+            <div class="feature-item"><span class="feature-check">✅</span>After-sales service & spares</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="form-card">
+        <div id="successMessage" style="display:none;text-align:center;padding:2rem">
+          <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+          <h3 style="color:var(--green-dark);margin-bottom:0.75rem">Inquiry Submitted!</h3>
+          <p style="color:var(--text-mid);margin-bottom:1.5rem" data-i18n="inquiry_success">We will contact you shortly.</p>
+          <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+            <a href="/products.html" class="btn btn-primary">Browse More Products</a>
+            <button onclick="resetForm()" class="btn btn-outline">New Inquiry</button>
+          </div>
+        </div>
+
+        <form id="fullInquiryForm">
+          <h3 style="margin-bottom:1.25rem;font-size:1.2rem;color:var(--green-dark)">📋 Inquiry Details</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fName" data-i18n="label_name">Full Name *</label>
+              <input type="text" id="fName" data-i18n-placeholder="placeholder_name" placeholder="Your full name" required>
+              <div class="field-error" id="nameError"></div>
+            </div>
+            <div class="form-group">
+              <label for="fPhone" data-i18n="label_phone">Mobile Number *</label>
+              <input type="tel" id="fPhone" data-i18n-placeholder="placeholder_phone" placeholder="10-digit mobile number" required>
+              <div class="field-error" id="phoneError"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fVillage" data-i18n="label_village">Village / City</label>
+            <input type="text" id="fVillage" data-i18n-placeholder="placeholder_village" placeholder="Your village or city">
+          </div>
+          <div class="form-group">
+            <label for="fMachine" data-i18n="label_machine">Machine Interested In</label>
+            <select id="fMachine">
+              <option value="">-- Select Machine Type --</option>
+              <option>Thresher / Combine</option>
+              <option>Rotavator / Tiller</option>
+              <option>Power Tiller</option>
+              <option>Seed Drill / Seeder</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fSpecificProduct">Specific Product Name (if known)</label>
+            <input type="text" id="fSpecificProduct">
+          </div>
+          <div class="form-group">
+            <label for="fMessage" data-i18n="label_message">Message / Requirements</label>
+            <textarea id="fMessage" rows="4" data-i18n-placeholder="placeholder_message" placeholder="Tell us your requirement, budget, or any questions..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center" id="submitBtn">
+            <span>📩</span>
+            <span data-i18n="btn_submit">Submit Inquiry</span>
+          </button>
+          <p style="text-align:center;font-size:0.8rem;color:var(--text-light);margin-top:0.75rem">
+            🔒 Your information is safe with us
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:0">
+      <p>© 2026 <img src="\images\logo_converted.png" style="height: 60px; border-radius: 50%;">. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="whatsappFloat" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+// Pre-fill from URL params
+const params = new URLSearchParams(window.location.search);
+if (params.get('product')) document.getElementById('fSpecificProduct').value = params.get('product');
+
+document.getElementById('fullInquiryForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  let valid = true;
+
+  document.getElementById('nameError').textContent = '';
+  document.getElementById('phoneError').textContent = '';
+
+  if (!name) { document.getElementById('nameError').textContent = I18n.t('error_required'); valid = false; }
+  if (!phone || !/^[6-9]\d{9}$/.test(phone)) { document.getElementById('phoneError').textContent = I18n.t('error_phone'); valid = false; }
+  if (!valid) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div>';
+
+  const machine = document.getElementById('fMachine').value;
+  const specific = document.getElementById('fSpecificProduct').value.trim();
+  const productInterested = [machine, specific].filter(Boolean).join(' - ');
+
+  const res = await API.post('/inquiries', {
+    customerName: name, phone,
+    village: document.getElementById('fVillage').value.trim(),
+    productInterested,
+    productId: params.get('id') || null,
+    message: document.getElementById('fMessage').value.trim(),
+    sessionId: SessionManager.getSessionId()
+  });
+
+  btn.disabled = false;
+  btn.innerHTML = '<span>📩</span><span data-i18n="btn_submit">Submit Inquiry</span>';
+
+  if (res.success) {
+    document.getElementById('fullInquiryForm').style.display = 'none';
+    document.getElementById('successMessage').style.display = 'block';
+    await VisitorTracker.identify(name, phone);
+  } else {
+    showToast('Failed to submit. Please try again.', 'error');
+  }
+});
+
+function resetForm() {
+  document.getElementById('fullInquiryForm').reset();
+  document.getElementById('fullInquiryForm').style.display = 'block';
+  document.getElementById('successMessage').style.display = 'none';
+}
+</script>
+</body>
+</html>

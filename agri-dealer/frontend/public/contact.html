@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Raj Agro sales</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="mainHeader">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_converted.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="logo-name">Raj Agro sales</span>
+        </div>
+      </a>
+      <div id="navLinks">
+        <a href="/" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="/products.html" class="nav-link" data-i18n="nav_products">Products</a>
+        <a href="/#about" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="/contact.html" class="nav-link active" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="mr">मर</button>
+          <button class="lang-btn" data-lang="hi">हि</button>
+        </div>
+        <a href="/inquiry.html" class="btn btn-primary btn-sm" data-i18n="nav_inquiry">Make Inquiry</a>
+        <button id="navToggle"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <br>
+    </div>
+    <h1 data-i18n="contact_title">Contact Us</h1>
+    <p style="color:rgba(255,255,255,0.8);margin-top:0.5rem">Get in touch — we're here to help you find the right machine</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div>
+        <span class="section-eyebrow">Get In Touch</span>
+        <h2 style="margin-bottom:1.5rem" data-i18n="contact_title">Contact Us</h2>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4 data-i18n="contact_address">Address</h4>
+            <p>infront of MSEB OFFICE shirpur road<br>chopda, Maharashtra 425107</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4 data-i18n="contact_phone">Phone</h4>
+            <p><a href="tel:+919763638666" style="color:var(--green-mid);font-weight:600">+91 9763638666</a></p>
+            <p><a href="tel:+919834190904" style="color:var(--green-mid);font-weight:600">+91 9834190904</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4 data-i18n="contact_email">Email</h4>
+            <p><a href="mailto:info@krishiyantra.com" style="color:var(--green-mid)">rajagrosales4448@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🕘</div>
+          <div>
+            <h4 data-i18n="contact_hours">Business Hours</h4>
+            <p data-i18n="contact_hours_val">Mon–Sun: 9:30 AM – 5 PM</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+          <button onclick="openWhatsApp()" class="btn btn-whatsapp">💬 WhatsApp Us</button>
+          <a href="tel:+919763638666" class="btn btn-primary">📞 Call Now</a>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!4v1781162514624!6m8!1m7!1sDc-ec6cCfZ7K8nAuW4Qdmg!2m2!1d21.24622074229469!2d75.28531384215844!3f7.376560616605655!4f-1.4141775257463394!5f0.7820865974627469"width="100%" height="280" style="border:0" allowfullscreen loading="lazy"referrerpolicy="no-referrer-when-downgrade" title="Our Location">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="form-card">
+        <h3 style="margin-bottom:0.25rem" data-i18n="contact_form_title">Send a Message</h3>
+        <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:1.5rem">We will get back to you within 24 hours.</p>
+
+        <div id="contactSuccess" style="display:none;text-align:center;padding:2rem">
+          <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+          <h3 style="color:var(--green-dark);margin-bottom:0.5rem">Message Sent!</h3>
+          <p style="color:var(--text-mid)">Thank you for contacting us. We will reach out to you shortly.</p>
+          <button onclick="resetContactForm()" class="btn btn-outline" style="margin-top:1rem">Send Another</button>
+        </div>
+
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cName" data-i18n="label_name">Full Name *</label>
+              <input type="text" id="cName" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="cPhone" data-i18n="label_phone">Mobile Number *</label>
+              <input type="tel" id="cPhone" placeholder="10-digit number" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cVillage" data-i18n="label_village">Village / City</label>
+            <input type="text" id="cVillage" placeholder="Your village or city">
+          </div>
+          <div class="form-group">
+            <label for="cSubject">Subject</label>
+            <select id="cSubject">
+              <option>Product Inquiry</option>
+              <option>Price Query</option>
+              <option>Service & Repair</option>
+              <option>Spare Parts</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cMessage" data-i18n="label_message">Message *</label>
+            <textarea id="cMessage" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center" id="contactBtn">
+            <span data-i18n="btn_send">Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Inquiry CTA -->
+<section class="section-sm" style="background:var(--green-dark);color:#fff;text-align:center">
+  <div class="container">
+    <h2 style="color:#fff;margin-bottom:0.75rem">Need a Machine? We'll Help You Choose!</h2>
+    <p style="color:rgba(255,255,255,0.8);margin-bottom:1.5rem">Our experts are ready to guide you to the right agricultural equipment for your farm.</p>
+    <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+      <a href="/inquiry.html" class="btn btn-gold btn-lg" data-i18n="nav_inquiry">Make Inquiry</a>
+      <button onclick="openWhatsApp()" class="btn btn-whatsapp btn-lg">💬 WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:0">
+      <p>© 2026 <img src="\images\logo_converted.png" style="height: 60px; border-radius: 50%;">. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="whatsappFloat" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  if (!name || !/^[6-9]\d{9}$/.test(phone)) { showToast(I18n.t('error_phone'), 'error'); return; }
+
+  const btn = document.getElementById('contactBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div>';
+
+  const res = await API.post('/inquiries', {
+    customerName: name, phone,
+    village: document.getElementById('cVillage').value.trim(),
+    productInterested: document.getElementById('cSubject').value,
+    message: document.getElementById('cMessage').value.trim(),
+    sessionId: SessionManager.getSessionId()
+  });
+
+  btn.disabled = false;
+  btn.innerHTML = '<span data-i18n="btn_send">Send Message</span>';
+
+  if (res.success) {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+    await VisitorTracker.identify(name, phone);
+  } else {
+    showToast('Failed to send message. Please try again.', 'error');
+  }
+});
+
+function resetContactForm() {
+  document.getElementById('contactForm').reset();
+  document.getElementById('contactForm').style.display = 'block';
+  document.getElementById('contactSuccess').style.display = 'none';
+}
+</script>
+</body>
+</html>

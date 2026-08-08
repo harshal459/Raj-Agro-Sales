@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Raj Agro sales</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+
+  <!-- ─── LOGIN PAGE ───────────────────────────────────────────────── -->
+  <div id="loginPage" class="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="/images/logo_converted.png" style="height: 75px; border-radius: 50%;">
+        <h2>Raj Agro sales</h2>
+        <p>Admin Dashboard</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="loginUsername" placeholder="Enter username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" required
+            autocomplete="current-password">
+        </div>
+        <div id="loginError" style="color:#c62828;font-size:0.83rem;margin-bottom:0.75rem;display:none"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="loginBtn">
+          Login to Dashboard
+        </button>
+      </form>
+      <p style="text-align:center;margin-top:1.25rem;font-size:0.8rem;color:var(--text-light)">
+        <a href="/" style="color:var(--green-mid)">← Back to Website</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ─── ADMIN APP ────────────────────────────────────────────────── -->
+  <div id="adminApp">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-name"><img src="/images/logo_converted.png"
+            style="height: 60px;width: auto; border-radius: 50%;"> Raj Agro sales</div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Main</div>
+        <div class="nav-item active" onclick="showSection('dashboard')">
+          <span class="nav-icon">📊</span> Dashboard
+        </div>
+        <div class="sidebar-section-label">Manage</div>
+        <div class="nav-item" onclick="showSection('products')">
+          <span class="nav-icon">🚜</span> Products
+        </div>
+        <div class="nav-item" onclick="showSection('inquiries')">
+          <span class="nav-icon">📋</span> Inquiries
+          <span id="newInquiryBadge"
+            style="margin-left:auto;background:#c62828;color:#fff;font-size:0.65rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:999px;display:none"></span>
+        </div>
+        <div class="nav-item" onclick="showSection('visitors')">
+          <span class="nav-icon">👥</span> Visitors
+        </div>
+        <div class="sidebar-section-label">Account</div>
+        <div class="nav-item" onclick="logout()">
+          <span class="nav-icon">🚪</span> Logout
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.4)">
+          Logged in as <span id="adminUsername" style="color:rgba(255,255,255,0.7)">admin</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="admin-main">
+      <header class="admin-header">
+
+        <div style="display:flex;align-items:center;gap:0.75rem">
+          <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            ☰
+          </button>
+
+          <span class="admin-header-title" id="currentPageTitle">Dashboard</span>
+        </div>
+        <div class="admin-header-right">
+          <a href="/" target="_blank" class="btn btn-outline btn-sm">🌐 View Site</a>
+          <button onclick="logout()" class="btn btn-danger btn-sm">Logout</button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!-- ─── DASHBOARD ──────────────────────────────────────────── -->
+        <div id="sectionDashboard" class="page-section active">
+          <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-blue">👥</div>
+              <div>
+                <div class="stat-value" id="sTotalVisitors">—</div>
+                <div class="stat-label">Total Visitors</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-green">🧑‍🌾</div>
+              <div>
+                <div class="stat-value" id="sUniqueCustomers">—</div>
+                <div class="stat-label">Identified Customers</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-gold">🚜</div>
+              <div>
+                <div class="stat-value" id="sTotalProducts">—</div>
+                <div class="stat-label">Total Products</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon stat-icon-purple">📋</div>
+              <div>
+                <div class="stat-value" id="sTotalInquiries">—</div>
+                <div class="stat-label">Total Inquiries</div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <!-- Visits chart -->
+            <div class="card">
+              <div class="card-header"><span class="card-title">📈 Daily Visits (Last 7 Days)</span></div>
+              <div class="card-body">
+                <div class="chart-bar-wrap" id="visitsChart"></div>
+              </div>
+            </div>
+            <!-- Recent Inquiries -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">📋 Recent Inquiries</span>
+                <button class="btn btn-outline btn-sm" onclick="showSection('inquiries')">View All</button>
+              </div>
+              <div class="card-body" style="padding:0">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Machine</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="recentInquiriesTable">
+                      <tr>
+                        <td colspan="4" style="text-align:center;padding:1.5rem">
+                          <div class="spinner"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Recent Visitors -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">👥 Recent Visitors</span>
+                <button class="btn btn-outline btn-sm" onclick="showSection('visitors')">View All</button>
+              </div>
+              <div class="card-body" style="padding:0">
+                <div class="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Visits</th>
+                        <th>Last Seen</th>
+                      </tr>
+                    </thead>
+                    <tbody id="recentVisitorsTable">
+                      <tr>
+                        <td colspan="4" style="text-align:center;padding:1.5rem">
+                          <div class="spinner"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Today stats -->
+            <div class="card">
+              <div class="card-header"><span class="card-title">📅 Today's Stats</span></div>
+              <div class="card-body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                  <div class="today-stat-box">
+                    <div class="circle-progress green">
+                      <div class="circle-inner">
+                        <div class="circle-value" id="sTodayVisitors">—</div>
+                      </div>
+                    </div>
+                    <div class="circle-label">Today's Visitors</div>
+                  </div>
+                  <div class="today-stat-box">
+                    <div class="circle-progress gold">
+                      <div class="circle-inner">
+                        <div class="circle-value" id="sMonthVisitors">—</div>
+                      </div>
+                    </div>
+                    <div class="circle-label">This Month</div>
+                  </div>
+                  <div class="today-stat-box">
+                    <div class="circle-progress purple">
+                      <div class="circle-inner">
+                        <div class="circle-value" id="sReturning">—</div>
+                      </div>
+                    </div>
+                    <div class="circle-label">Returning</div>
+                  </div>
+                  <div class="today-stat-box">
+                    <div class="circle-progress blue">
+                      <div class="circle-inner">
+                        <div class="circle-value" id="sNewInquiriesToday">—</div>
+                      </div>
+                    </div>
+                    <div class="circle-label">New Inquiries</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── PRODUCTS ───────────────────────────────────────────── -->
+      <div id="sectionProducts" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🚜 Products</span>
+            <button class="btn btn-primary btn-sm" onclick="openProductModal()">+ Add Product</button>
+          </div>
+          <div class="card-body" style="padding-bottom:0">
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+              <div class="search-bar">
+                <span class="search-bar-icon">🔍</span>
+                <input type="text" id="productSearch" placeholder="Search products..." oninput="filterProducts()">
+              </div>
+              <select class="filter-select" id="productCatFilter" onchange="filterProducts()">
+                <option value="All">All Categories</option>
+                <option>Thresher</option>
+                <option>Rotavator</option>
+                <option>Tillers</option>
+                <option>Sprayers</option>
+                <option>Seeders</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Brand</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Views</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTable">
+                <tr>
+                  <td colspan="8">
+                    <div class="loading-state">
+                      <div class="spinner"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── INQUIRIES ─────────────────────────────────────────── -->
+      <div id="sectionInquiries" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">📋 Inquiries</span>
+            <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+              <div class="search-bar">
+                <span class="search-bar-icon">🔍</span>
+                <input type="text" id="inquirySearch" placeholder="Search..." oninput="loadInquiries()">
+              </div>
+              <select class="filter-select" id="inquiryStatusFilter" onchange="loadInquiries()">
+                <option value="All">All Status</option>
+                <option value="New">New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Converted">Converted</option>
+                <option value="Closed">Closed</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Village</th>
+                  <th>Machine</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTable">
+                <tr>
+                  <td colspan="8">
+                    <div class="loading-state">
+                      <div class="spinner"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="inquiryPagination"
+            style="display:flex;justify-content:flex-end;gap:0.4rem;padding:1rem 1.25rem;border-top:1px solid var(--border)">
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── VISITORS ───────────────────────────────────────────── -->
+      <div id="sectionVisitors" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">👥 Identified Visitors</span>
+            <div style="font-size:0.8rem;color:var(--text-light)">Customers who shared their details</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Visit Count</th>
+                  <th>First Visit</th>
+                  <th>Last Visit</th>
+                  <th>Pages Viewed</th>
+                </tr>
+              </thead>
+              <tbody id="visitorsTable">
+                <tr>
+                  <td colspan="6">
+                    <div class="loading-state">
+                      <div class="spinner"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+  </div><!-- /adminApp -->
+
+  <!-- ─── PRODUCT MODAL ─────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="productModalTitle">Add Product</h3>
+        <button class="modal-close" onclick="closeProductModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="productForm" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Product Name (English) *</label>
+              <input type="text" name="name" id="pName" required placeholder="">
+            </div>
+            <div class="form-group">
+              <label>Product Name (Marathi)</label>
+              <input type="text" name="nameMarathi" id="pNameMr" placeholder="मराठी नाव">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category *</label>
+              <select name="category" id="pCategory" required>
+                <option value="">-- Select --</option>
+                <option>Thresher</option>
+                <option>Rotavator</option>
+                <option>Tillers</option>
+                <option>Seeders</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Brand *</label>
+              <input type="text" name="brand" id="pBrand" required placeholder="">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Price (₹) *</label>
+              <input type="number" name="price" id="pPrice" required placeholder="e.g. 680000">
+            </div>
+            <div class="form-group">
+              <label>Price Display</label>
+              <input type="text" name="priceDisplay" id="pPriceDisplay" placeholder="e.g. ₹6,80,000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description *</label>
+            <textarea name="description" id="pDescription" rows="3" required
+              placeholder="Product description..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Availability</label>
+              <select name="availability" id="pAvailability">
+                <option>In Stock</option>
+                <option>Out of Stock</option>
+                <option>On Order</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Status</label>
+              <select name="isActive" id="pIsActive">
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:0.5rem">
+              <input type="checkbox" name="isFeatured" id="pIsFeatured"> Featured Product
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Key Features (one per line)</label>
+            <textarea id="pFeatures" rows="4" placeholder="45 HP&#10; suitable Tractor"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Specifications (Key: Value, one per line)</label>
+            <textarea id="pSpecs" rows="4" placeholder="HP: 45 HP&#10;Weight: 2050 kg"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Benefits (one per line)</label>
+            <textarea id="pBenefits" rows="3" placeholder="Fuel efficient&#10;Easy maintenance"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Product Images</label>
+            <div class="img-upload-wrap" onclick="document.getElementById('pImages').click()">
+              <div style="font-size:1.5rem;margin-bottom:0.4rem">📷</div>
+              <div style="font-size:0.85rem;color:var(--text-light)">Click to upload images (JPG, PNG, WebP · max 5MB
+                each)</div>
+            </div>
+            <input type="file" id="pImages" name="images" multiple accept="image/*" style="display:none"
+              onchange="previewImages(this)">
+            <div class="img-preview-grid" id="imgPreviewGrid"></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveProduct()" id="saveProductBtn">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── INQUIRY DETAIL MODAL ─────────────────────────────────────── -->
+  <div class="modal-overlay" id="inquiryModal">
+    <div class="modal-box" style="max-width:480px">
+      <div class="modal-header">
+        <h3>Inquiry Details</h3>
+        <button class="modal-close" onclick="closeModal('inquiryModal')">✕</button>
+      </div>
+      <div class="modal-body" id="inquiryDetail"></div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('inquiryModal')">Close</button>
+        <button class="btn btn-primary" id="markContactedBtn">Mark as Contacted</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="adminToast"></div>
+
+  <script>
+    const ADMIN_API = '/api';
+    let authToken = localStorage.getItem('admin_token');
+    let currentProductId = null;
+    let allProducts = [];
+
+    // ─── AUTH ──────────────────────────────────────────────────────────
+    async function apiRequest(method, endpoint, data = null, isFormData = false) {
+      const headers = { Authorization: `Bearer ${authToken}` };
+      if (!isFormData) headers['Content-Type'] = 'application/json';
+      const opts = { method, headers };
+      if (data) opts.body = isFormData ? data : JSON.stringify(data);
+      try {
+        const res = await fetch(`${ADMIN_API}${endpoint}`, opts);
+        if (res.status === 401) { logout(); return null; }
+        return await res.json();
+      } catch (e) { return null; }
+    }
+
+    function toast(msg, type = 'success') {
+      const t = document.getElementById('adminToast');
+      t.textContent = msg;
+      t.className = `toast${type === 'error' ? ' error' : ''} show`;
+      setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    // ─── LOGIN ─────────────────────────────────────────────────────────
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      btn.disabled = true; btn.textContent = 'Logging in...';
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: document.getElementById('loginUsername').value,
+          password: document.getElementById('loginPassword').value
+        })
+      });
+      const data = await res.json();
+      btn.disabled = false; btn.textContent = 'Login to Dashboard';
+      if (data.success) {
+        authToken = data.token;
+        localStorage.setItem('admin_token', authToken);
+        document.getElementById('adminUsername').textContent = data.admin.username;
+        showAdmin();
+      } else {
+        const err = document.getElementById('loginError');
+        err.textContent = data.message || 'Invalid credentials';
+        err.style.display = 'block';
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem('admin_token');
+      authToken = null;
+      document.getElementById('adminApp').style.display = 'none';
+      document.getElementById('loginPage').style.display = 'flex';
+    }
+
+    async function verifyAndShow() {
+      if (!authToken) return;
+      const res = await fetch('/api/auth/verify', { headers: { Authorization: `Bearer ${authToken}` } });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('adminUsername').textContent = data.admin.username;
+        showAdmin();
+      } else {
+        logout();
+      }
+    }
+
+    function showAdmin() {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('adminApp').style.display = 'block';
+      loadDashboard();
+    }
+
+    // ─── NAVIGATION ────────────────────────────────────────────────────
+    function showSection(name) {
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById(`section${capitalize(name)}`).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => {
+        if (n.getAttribute('onclick').includes(`'${name}'`)) n.classList.add('active');
+      });
+      const titles = { dashboard: '📊 Dashboard', products: '🚜 Products', inquiries: '📋 Inquiries', visitors: '👥 Visitors' };
+      document.getElementById('currentPageTitle').textContent = titles[name] || '';
+
+      if (name === 'products') loadProducts();
+      if (name === 'inquiries') loadInquiries();
+      if (name === 'visitors') loadVisitors();
+      if (window.innerWidth <= 768) {
+        document.getElementById('adminSidebar').classList.remove('open');
+      }
+    }
+    
+    function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    // ─── DASHBOARD ─────────────────────────────────────────────────────
+    async function loadDashboard() {
+      const [analyticsRes, inquiriesRes, productsRes] = await Promise.all([
+        apiRequest('GET', '/visitors/analytics'),
+        apiRequest('GET', '/inquiries?limit=5'),
+        apiRequest('GET', '/products/admin/all')
+      ]);
+
+      if (analyticsRes?.success) {
+        const a = analyticsRes.analytics;
+        document.getElementById('sTotalVisitors').textContent = a.totalVisitors;
+        document.getElementById('sUniqueCustomers').textContent = a.uniqueIdentified;
+        document.getElementById('sTodayVisitors').textContent = a.todayVisitors;
+        document.getElementById('sMonthVisitors').textContent = a.monthVisitors;
+        document.getElementById('sReturning').textContent = a.returningVisitors;
+        renderChart(a.dailyStats);
+        renderRecentVisitors(a.recentVisitors);
+      }
+      if (inquiriesRes?.success) {
+        document.getElementById('sTotalInquiries').textContent = inquiriesRes.total;
+        const newCount = inquiriesRes.inquiries.filter(i => i.status === 'New').length;
+        if (newCount > 0) {
+          document.getElementById('newInquiryBadge').textContent = newCount;
+          document.getElementById('newInquiryBadge').style.display = 'inline';
+        }
+        document.getElementById('sNewInquiriesToday').textContent = newCount;
+        renderRecentInquiries(inquiriesRes.inquiries);
+      }
+      if (productsRes?.success) {
+        document.getElementById('sTotalProducts').textContent = productsRes.products.length;
+      }
+    }
+
+    function renderChart(stats) {
+      if (!stats) return;
+      const max = Math.max(...stats.map(s => s.visits), 1);
+      document.getElementById('visitsChart').innerHTML = stats.map(s => `
+    <div class="chart-bar-col">
+      <div class="chart-val">${s.visits}</div>
+      <div class="chart-bar" style="height:${Math.max((s.visits / max) * 90, 4)}px"></div>
+      <div class="chart-label">${s.date}</div>
+    </div>`).join('');
+    }
+
+    function renderRecentInquiries(inquiries) {
+      document.getElementById('recentInquiriesTable').innerHTML = inquiries.length
+        ? inquiries.map(i => `<tr>
+        <td><strong>${i.customerName}</strong></td>
+        <td><a href="tel:${i.phone}" style="color:var(--green-mid)">${i.phone}</a></td>
+        <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${i.productInterested || '—'}</td>
+        <td>${statusBadge(i.status)}</td>
+      </tr>`).join('')
+        : '<tr><td colspan="4" class="empty-state">No inquiries yet</td></tr>';
+    }
+
+    function renderRecentVisitors(visitors) {
+      document.getElementById('recentVisitorsTable').innerHTML = visitors && visitors.length
+        ? visitors.slice(0, 6).map(v => `<tr>
+        <td><strong>${v.name || '—'}</strong></td>
+        <td>${v.phone || '—'}</td>
+        <td>${v.visitCount}</td>
+        <td style="font-size:0.78rem;color:var(--text-light)">${formatDate(v.lastVisit)}</td>
+      </tr>`).join('')
+        : '<tr><td colspan="4" class="empty-state">No visitors yet</td></tr>';
+    }
+
+    // ─── PRODUCTS ──────────────────────────────────────────────────────
+    async function loadProducts() {
+      const res = await apiRequest('GET', '/products/admin/all');
+      if (!res?.success) return;
+      allProducts = res.products;
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const q = document.getElementById('productSearch').value.toLowerCase();
+      const cat = document.getElementById('productCatFilter').value;
+      const filtered = allProducts.filter(p =>
+        (cat === 'All' || p.category === cat) &&
+        (!q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q))
+      );
+      renderProductsTable(filtered);
+    }
+
+    function renderProductsTable(products) {
+      document.getElementById('productsTable').innerHTML = products.length
+        ? products.map(p => `<tr>
+        <td><img src="${p.mainImage || 'placeholder.jpg'}" class="product-img-cell" onerror="this.src='/images/placeholder.jpg'"></td>
+        <td><strong>${p.name}</strong>${p.isFeatured ? ' <span class="badge badge-gold">★ Featured</span>' : ''}</td>
+        <td>${p.category}</td>
+        <td>${p.brand}</td>
+        <td style="font-weight:700;color:var(--green-dark)">${p.priceDisplay || '₹' + p.price.toLocaleString('en-IN')}</td>
+        <td>${availBadge(p.availability)}</td>
+        <td>${p.viewCount || 0}</td>
+        <td>
+          <div class="action-btns">
+            <button class="btn btn-outline btn-xs" onclick="editProduct('${p._id}')">✏️ Edit</button>
+            <button class="btn btn-danger btn-xs" onclick="deleteProduct('${p._id}','${p.name.replace(/'/g, "\\'")}')">🗑️</button>
+          </div>
+        </td>
+      </tr>`).join('')
+        : '<tr><td colspan="8"><div class="empty-state"><div class="empty-state-icon">🚜</div>No products found</div></td></tr>';
+    }
+
+    function openProductModal(product = null) {
+      currentProductId = null;
+      document.getElementById('productForm').reset();
+      document.getElementById('imgPreviewGrid').innerHTML = '';
+      document.getElementById('productModalTitle').textContent = 'Add Product';
+      if (product) {
+        currentProductId = product._id;
+        document.getElementById('productModalTitle').textContent = 'Edit Product';
+        document.getElementById('pName').value = product.name || '';
+        document.getElementById('pNameMr').value = product.nameMarathi || '';
+        document.getElementById('pCategory').value = product.category || '';
+        document.getElementById('pBrand').value = product.brand || '';
+        document.getElementById('pPrice').value = product.price || '';
+        document.getElementById('pPriceDisplay').value = product.priceDisplay || '';
+        document.getElementById('pDescription').value = product.description || '';
+        document.getElementById('pAvailability').value = product.availability || 'In Stock';
+        document.getElementById('pIsActive').value = String(product.isActive !== false);
+        document.getElementById('pIsFeatured').checked = !!product.isFeatured;
+        document.getElementById('pFeatures').value = (product.features || []).join('\n');
+        document.getElementById('pSpecs').value = (product.specifications || []).map(s => `${s.key}: ${s.value}`).join('\n');
+        document.getElementById('pBenefits').value = (product.benefits || []).join('\n');
+      }
+      document.getElementById('productModal').classList.add('open');
+    }
+
+    function closeProductModal() { document.getElementById('productModal').classList.remove('open'); }
+
+    async function editProduct(id) {
+      const product = allProducts.find(p => p._id === id);
+      if (product) openProductModal(product);
+    }
+
+    async function saveProduct() {
+      const btn = document.getElementById('saveProductBtn');
+      btn.disabled = true; btn.innerHTML = '<div class="spinner"></div>';
+
+      const formData = new FormData();
+      formData.append('name', document.getElementById('pName').value.trim());
+      formData.append('nameMarathi', document.getElementById('pNameMr').value.trim());
+      formData.append('category', document.getElementById('pCategory').value);
+      formData.append('brand', document.getElementById('pBrand').value.trim());
+      formData.append('price', document.getElementById('pPrice').value);
+      formData.append('priceDisplay', document.getElementById('pPriceDisplay').value.trim());
+      formData.append('description', document.getElementById('pDescription').value.trim());
+      formData.append('availability', document.getElementById('pAvailability').value);
+      formData.append('isActive', document.getElementById('pIsActive').value);
+      formData.append('isFeatured', document.getElementById('pIsFeatured').checked);
+
+      const features = document.getElementById('pFeatures').value.split('\n').map(s => s.trim()).filter(Boolean);
+      formData.append('features', JSON.stringify(features));
+
+      const specsRaw = document.getElementById('pSpecs').value.split('\n').map(s => s.trim()).filter(Boolean);
+      const specs = specsRaw.map(s => { const [k, ...v] = s.split(':'); return { key: k.trim(), value: v.join(':').trim() }; });
+      formData.append('specifications', JSON.stringify(specs));
+
+      const benefits = document.getElementById('pBenefits').value.split('\n').map(s => s.trim()).filter(Boolean);
+      formData.append('benefits', JSON.stringify(benefits));
+
+      const imgFiles = document.getElementById('pImages').files;
+      for (let f of imgFiles) formData.append('images', f);
+
+      const endpoint = currentProductId ? `/products/${currentProductId}` : '/products';
+      const method = currentProductId ? 'PUT' : 'POST';
+
+      const headers = { Authorization: `Bearer ${authToken}` };
+      const res = await fetch(`${ADMIN_API}${endpoint}`, { method, headers, body: formData });
+      const data = await res.json();
+
+      btn.disabled = false; btn.textContent = 'Save Product';
+      if (data.success) {
+        toast(currentProductId ? '✅ Product updated' : '✅ Product added');
+        closeProductModal();
+        loadProducts();
+      } else {
+        toast(data.message || 'Failed to save', 'error');
+      }
+    }
+
+    async function deleteProduct(id, name) {
+      if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
+      const res = await apiRequest('DELETE', `/products/${id}`);
+      if (res?.success) { toast('🗑️ Product deleted'); loadProducts(); }
+      else toast('Failed to delete', 'error');
+    }
+
+    function previewImages(input) {
+      const grid = document.getElementById('imgPreviewGrid');
+      grid.innerHTML = '';
+      for (let f of input.files) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          grid.innerHTML += `<div class="img-preview"><img src="${e.target.result}" alt="preview"></div>`;
+        };
+        reader.readAsDataURL(f);
+      }
+    }
+
+    // ─── INQUIRIES ─────────────────────────────────────────────────────
+    let inquiryPage = 1;
+    async function loadInquiries() {
+      const search = document.getElementById('inquirySearch').value.trim();
+      const status = document.getElementById('inquiryStatusFilter').value;
+      let query = `?page=${inquiryPage}&limit=20`;
+      if (search) query += `&search=${encodeURIComponent(search)}`;
+      if (status !== 'All') query += `&status=${status}`;
+      const res = await apiRequest('GET', `/inquiries${query}`);
+      if (!res?.success) return;
+
+      document.getElementById('inquiriesTable').innerHTML = res.inquiries.length
+        ? res.inquiries.map(i => `<tr>
+        <td><strong>${i.customerName}</strong></td>
+        <td><a href="tel:${i.phone}" style="color:var(--green-mid);font-weight:600">${i.phone}</a></td>
+        <td>${i.village || '—'}</td>
+        <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${i.productInterested || '—'}</td>
+        <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.8rem;color:var(--text-light)">${i.message || '—'}</td>
+        <td style="font-size:0.78rem;color:var(--text-light);white-space:nowrap">${formatDate(i.createdAt)}</td>
+        <td>${statusBadge(i.status)}</td>
+        <td>
+          <div class="action-btns">
+            <button class="btn btn-outline btn-xs" onclick='showInquiry(${JSON.stringify(i)})'>👁</button>
+            <select class="filter-select" style="font-size:0.73rem;padding:0.2rem 0.4rem" onchange="updateInquiryStatus('${i._id}',this.value)">
+              <option ${i.status === 'New' ? 'selected' : ''}>New</option>
+              <option ${i.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+              <option ${i.status === 'Converted' ? 'selected' : ''}>Converted</option>
+              <option ${i.status === 'Closed' ? 'selected' : ''}>Closed</option>
+            </select>
+            <button class="btn btn-danger btn-xs" onclick="deleteInquiry('${i._id}')">🗑️</button>
+          </div>
+        </td>
+      </tr>`).join('')
+        : '<tr><td colspan="8"><div class="empty-state"><div class="empty-state-icon">📋</div>No inquiries found</div></td></tr>';
+    }
+
+    function showInquiry(inquiry) {
+      document.getElementById('inquiryDetail').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:0.85rem">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem">
+        <div style="background:var(--bg-light);padding:0.85rem;border-radius:var(--radius-sm)">
+          <div style="font-size:0.72rem;color:var(--text-light);text-transform:uppercase;margin-bottom:0.2rem">Name</div>
+          <div style="font-weight:600">${inquiry.customerName}</div>
+        </div>
+        <div style="background:var(--bg-light);padding:0.85rem;border-radius:var(--radius-sm)">
+          <div style="font-size:0.72rem;color:var(--text-light);text-transform:uppercase;margin-bottom:0.2rem">Phone</div>
+          <a href="tel:${inquiry.phone}" style="font-weight:700;color:var(--green-mid)">${inquiry.phone}</a>
+        </div>
+        <div style="background:var(--bg-light);padding:0.85rem;border-radius:var(--radius-sm)">
+          <div style="font-size:0.72rem;color:var(--text-light);text-transform:uppercase;margin-bottom:0.2rem">Village/City</div>
+          <div>${inquiry.village || '—'}</div>
+        </div>
+        <div style="background:var(--bg-light);padding:0.85rem;border-radius:var(--radius-sm)">
+          <div style="font-size:0.72rem;color:var(--text-light);text-transform:uppercase;margin-bottom:0.2rem">Status</div>
+          <div>${statusBadge(inquiry.status)}</div>
+        </div>
+      </div>
+      <div style="background:var(--bg-light);padding:0.85rem;border-radius:var(--radius-sm)">
+        <div style="font-size:0.72rem;color:var(--text-light);text-transform:uppercase;margin-bottom:0.2rem">Machine Interested In</div>
+        <div style="font-weight:600">${inquiry.productInterested || '—'}</div>
+      </div>
+      ${inquiry.message ? `<div style="background:var(--bg-light);padding:0.85rem;border-radius:var(--radius-sm)">
+        <div style="font-size:0.72rem;color:var(--text-light);text-transform:uppercase;margin-bottom:0.2rem">Message</div>
+        <div>${inquiry.message}</div>
+      </div>` : ''}
+      <div style="font-size:0.78rem;color:var(--text-light)">Received: ${formatDate(inquiry.createdAt)}</div>
+      <div style="display:flex;gap:0.75rem">
+        <a href="tel:${inquiry.phone}" class="btn btn-primary btn-sm">📞 Call</a>
+        <a href="https://wa.me/${inquiry.phone.replace(/[^0-9]/g, '')}" target="_blank" class="btn btn-sm" style="background:#25D366;color:#fff">💬 WhatsApp</a>
+      </div>
+    </div>`;
+      document.getElementById('markContactedBtn').onclick = () => updateInquiryStatus(inquiry._id, 'Contacted');
+      document.getElementById('inquiryModal').classList.add('open');
+    }
+
+    async function updateInquiryStatus(id, status) {
+      const res = await apiRequest('PUT', `/inquiries/${id}`, { status });
+      if (res?.success) { toast(`✅ Marked as ${status}`); closeModal('inquiryModal'); loadInquiries(); }
+      else toast('Failed to update', 'error');
+    }
+
+    async function deleteInquiry(id) {
+      if (!confirm('Delete this inquiry?')) return;
+      const res = await apiRequest('DELETE', `/inquiries/${id}`);
+      if (res?.success) { toast('🗑️ Deleted'); loadInquiries(); }
+      else toast('Failed', 'error');
+    }
+
+    // ─── VISITORS ──────────────────────────────────────────────────────
+    async function loadVisitors() {
+      const res = await apiRequest('GET', '/visitors/list?limit=50');
+      if (!res?.success) return;
+      document.getElementById('visitorsTable').innerHTML = res.visitors.length
+        ? res.visitors.map(v => `<tr>
+        <td><strong>${v.name || '—'}</strong></td>
+        <td><a href="tel:${v.phone}" style="color:var(--green-mid)">${v.phone || '—'}</a></td>
+        <td>${v.visitCount}</td>
+        <td style="font-size:0.78rem;color:var(--text-light)">${formatDate(v.firstVisit)}</td>
+        <td style="font-size:0.78rem;color:var(--text-light)">${formatDate(v.lastVisit)}</td>
+        <td>${(v.pageViews || []).length}</td>
+      </tr>`).join('')
+        : '<tr><td colspan="6"><div class="empty-state"><div class="empty-state-icon">👥</div>No identified visitors yet</div></td></tr>';
+    }
+
+    // ─── HELPERS ───────────────────────────────────────────────────────
+    function statusBadge(status) {
+      const map = { New: 'badge-red', Contacted: 'badge-blue', Converted: 'badge-green', Closed: 'badge-gray' };
+      return `<span class="badge ${map[status] || 'badge-gray'}">${status}</span>`;
+    }
+    function availBadge(a) {
+      return a === 'In Stock' ? '<span class="badge badge-green">In Stock</span>'
+        : a === 'Out of Stock' ? '<span class="badge badge-red">Out of Stock</span>'
+          : '<span class="badge badge-gold">On Order</span>';
+    }
+    function formatDate(d) {
+      if (!d) return '—';
+      return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    // ─── INIT ──────────────────────────────────────────────────────────
+    verifyAndShow();
+  </script>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('adminSidebar').classList.toggle('open');
+    }</script>
+</body>
+
+</html>
