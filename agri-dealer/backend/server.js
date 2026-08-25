@@ -14,8 +14,12 @@ const app = express();
 // Connect DB
 connectDB();
 
+// Correct paths
+const frontendDir = path.join(__dirname, '../frontend/public');
+const uploadsDir = path.join(frontendDir, 'uploads');
+const adminDir = path.join(__dirname, '../admin');
+
 // Create uploads directory if not exists
-const uploadsDir = path.join(__dirname, 'frontend', 'public', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -35,6 +39,7 @@ const limiter = rateLimit({
   max: 200,
   message: 'Too many requests'
 });
+
 app.use('/api/', limiter);
 
 // Stricter rate limit for auth
@@ -43,6 +48,7 @@ const authLimiter = rateLimit({
   max: 10,
   message: 'Too many login attempts'
 });
+
 app.use('/api/auth/login', authLimiter);
 
 // Body parsers
@@ -53,13 +59,10 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/api/', trackVisitor);
 
 // Serve frontend static files
-app.use(express.static(path.join(__dirname, 'frontend', 'public')));
+app.use(express.static(frontendDir));
 
 // Serve uploads
-app.use(
-  '/uploads',
-  express.static(path.join(__dirname, 'frontend', 'public', 'uploads'))
-);
+app.use('/uploads', express.static(uploadsDir));
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -67,18 +70,16 @@ app.use('/api/products', require('./routes/products'));
 app.use('/api/inquiries', require('./routes/inquiries'));
 app.use('/api/visitors', require('./routes/visitors'));
 
-// Admin dashboard route
-app.use('/admin', express.static(path.join(__dirname, 'admin')));
+// Admin dashboard
+app.use('/admin', express.static(adminDir));
 
 app.get('/admin/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+  res.sendFile(path.join(adminDir, 'index.html'));
 });
 
 // All other routes serve frontend
 app.get('*', (req, res) => {
-  res.sendFile(
-    path.join(__dirname, 'frontend', 'public', 'index.html')
-  );
+  res.sendFile(path.join(frontendDir, 'index.html'));
 });
 
 // Error handler
