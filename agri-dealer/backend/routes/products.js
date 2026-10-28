@@ -23,12 +23,14 @@ const upload = multer({ storage, fileFilter, limits: { fileSize: 5 * 1024 * 1024
 // Public routes
 router.get('/', productController.getProducts);
 router.get('/featured', productController.getFeaturedProducts);
-router.get('/:slug', productController.getProduct);
 
 // Admin routes
 router.get('/admin/all', authMiddleware, productController.adminGetProducts);
 router.post('/', authMiddleware, upload.array('images', 10), productController.createProduct);
 router.put('/:id', authMiddleware, upload.array('images', 10), productController.updateProduct);
 router.delete('/:id', authMiddleware, productController.deleteProduct);
+
+// Public product detail route
+router.get('/:slug', productController.getProduct);
 
 module.exports = router;
