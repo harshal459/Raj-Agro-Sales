@@ -1,0 +1,5 @@
+agri-dealer/backend/.env
+agri-dealer/backend/node_modules/
+*.tmp
+*.log
+.verify-*.js
